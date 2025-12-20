@@ -264,7 +264,7 @@ if __name__ == "__main__":
     print("EXEMPLE D'UTILISATION")
     print("="*60 + "\n")
     
-    texte_exemple = "Bonjour le monde! Ceci est un exemple de compression de Huffman."
+    texte_exemple = "HOURRA HOURRA HOURRRRA ?"
     print(f"Texte d'exemple : \"{texte_exemple}\"\n")
     
     frequences = calculer_frequences(texte_exemple)
