@@ -4,9 +4,10 @@ Auteur: Personne 2
 Description: Construction de l'arbre de Huffman à partir des nœuds feuilles
 """
 
-import heapq
-from typing import List, Optional
-from analyse_frequences import Noeud, creer_noeuds_feuilles
+import heapq # Importation du module heapq pour la gestion du tas min (priority queue 
+# une min-heap)
+from typing import List, Optional # Importation des types List et Optional pour les annotations de type
+from analyse_frequences import Noeud, creer_noeuds_feuilles  # Importation de la classe Noeud et de la fonction creer_noeuds_feuilles
 
 
 def construire_arbre_huffman(noeuds_feuilles: List[Noeud]) -> Optional[Noeud]:
@@ -34,7 +35,8 @@ def construire_arbre_huffman(noeuds_feuilles: List[Noeud]) -> Optional[Noeud]:
     heapq.heapify(heap)            # tas min basé sur Noeud.frequence
 
     while len(heap) > 1:
-        gauche = heapq.heappop(heap)
+        gauche = heapq.heappop(heap)#Supprime et retourne le plus petit élément du tas (heap)
+        # Taille du heap diminue de 1 à chaque heappop
         droit = heapq.heappop(heap)
 
         frequence_totale = gauche.frequence + droit.frequence
@@ -46,10 +48,34 @@ def construire_arbre_huffman(noeuds_feuilles: List[Noeud]) -> Optional[Noeud]:
         )
 
         heapq.heappush(heap, parent)
+        """Ajoute un nouvel élément dans le tas
+        Taille du heap augmente de 1
+        L’ordre du tas est automatiquement conservé (min-heap : plus petit en haut)"""
+    """On retire 2 nœuds → len(heap) diminue de 2
+    On ajoute 1 nœud → len(heap) augmente de 1
+    heap = [c(1), a(2), b(3)]
+    Nouveau heap :
 
+    heap = [b(3), *(3)]
+    len(heap) = 2"""
     return heap[0]
 
+# Optional[Noeud] signifie :
+# soit c’est un Noeud
+# soit c’est None (arbre vide)
 
+# indent → chaîne de caractères utilisée pour l’indentation
+# Défaut = "" → pas d’espace au départ
+
+# branche → indique la position du nœud :
+
+# "R" → racine (root)
+# "G" → nœud gauche
+# "D" → nœud droit
+
+# 3️⃣ -> None
+# Signifie que la fonction ne renvoie rien
+# Elle sert uniquement à afficher l’arbre dans la console
 def afficher_arbre(racine: Optional[Noeud], indent: str = "", branche: str = "R") -> None:
     """
     Affiche l'arbre de Huffman de manière lisible (texte).
@@ -86,7 +112,8 @@ def test_construction_arbre_simple():
 
     frequences = {'a': 5, 'b': 1, 'c': 1}
     feuilles = creer_noeuds_feuilles(frequences)
-    racine = construire_arbre_huffman(feuilles)
+    racine = construire_arbre_huffman(feuilles) # Construire l'arbre de Huffman , insérer les feuilles et obtenir la racine
+    
 
     assert racine is not None, "Échec : la racine ne doit pas être None"
     frequence_totale = sum(frequences.values())

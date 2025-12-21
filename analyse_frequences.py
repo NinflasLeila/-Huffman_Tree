@@ -73,7 +73,7 @@ def calculer_frequences(texte):
         >>> calculer_frequences("aabbc")
         {'a': 2, 'b': 2, 'c': 1}
     """
-    frequences = {}
+    frequences = {} # Crée un dictionnaire : caractère -> fréquence
     
     for caractere in texte:
         if caractere in frequences:
@@ -87,12 +87,16 @@ def calculer_frequences(texte):
 def creer_noeuds_feuilles(frequences):
     """
     Crée une liste de nœuds feuilles à partir du dictionnaire de fréquences
+    Transforme les fréquences en nœuds Huffman: Chaque caractère devient :
+    une feuille  avec son poids égal à sa fréquence.
     
     Args:
         frequences (dict): Dictionnaire {caractère: fréquence}
         
     Returns:
         list: Liste de Noeud (feuilles de l'arbre)
+
+    Cette liste sera donnée à la min-heap plus tard.
     """
     noeuds = []
     
@@ -111,13 +115,14 @@ def afficher_frequences(frequences, trier=True):
         frequences (dict): Dictionnaire {caractère: fréquence}
         trier (bool): Si True, trie par fréquence décroissante
     """
-    print("\n" + "="*50)
+    print("\n" + "="*50) #C’est un retour à la ligne avec le caractère = 50 fois
     print("ANALYSE DES FRÉQUENCES")
-    print("="*50)
+    print("="*50) #==================================================
     
     # Trier si demandé
     if trier:
         items = sorted(frequences.items(), key=lambda x: x[1], reverse=True)
+        # Trier par fréquence décroissante
     else:
         items = frequences.items()
     
@@ -125,6 +130,12 @@ def afficher_frequences(frequences, trier=True):
     print(f"Nombre total de caractères : {sum(frequences.values())}\n")
     
     print(f"{'Caractère':<15} {'Fréquence':<10} {'Pourcentage'}")
+    # Affichage des en-têtes de colonnes 
+    # <15 = aligner à gauche sur 15 caractères
+    # Résultat :
+    # Caractère      (espaces ajoutés)
+    # Résultat à l’écran
+    # Caractère       Fréquence  Pourcentage
     print("-"*50)
     
     total = sum(frequences.values())
@@ -142,6 +153,8 @@ def afficher_frequences(frequences, trier=True):
         
         pourcentage = (freq / total) * 100
         print(f"{affichage:<15} {freq:<10} {pourcentage:>6.2f}%")
+        # > → alignement à droite
+        # < → alignement à gauche
     
     print("="*50 + "\n")
 
