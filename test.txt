@@ -1,3 +1,0 @@
-Bonjour le monde!
-   Ceci est un test pour l'algorithme de Huffman.
-   La compression de données est fascinante.

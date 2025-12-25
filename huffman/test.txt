@@ -1,0 +1,2 @@
+Le codage de Huffman est une méthode de compression sans perte.
+Il attribue des codes plus courts aux caractères fréquents.
